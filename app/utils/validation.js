@@ -1,3 +1,5 @@
+import zxcvbn from 'zxcvbn';
+
 const EMAIL_REGEX = /.+@.+\..+/;
 const PASSWORD_REGEX = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,72}$/;
 
@@ -21,9 +23,13 @@ export const matchesRegex = (regex, message) => value => [
 export const isEmail = (message = 'Ugyldig e-post') =>
   matchesRegex(EMAIL_REGEX, message);
 
-export const validPassword = (
+export const validPassword2 = (
   message = 'Passordet må inneholde store og små bokstaver og tall, samt være minst 8 tegn langt.'
 ) => matchesRegex(PASSWORD_REGEX, message);
+
+export const validPassword = (
+  message = 'Passordet er for svakt. Minimumsverdien er grad 3.'
+) => value => [value === undefined ? false : zxcvbn(value).score >= 2, message];
 
 export const whenPresent = validator => (value, context) =>
   value ? validator(value, context) : [true];
