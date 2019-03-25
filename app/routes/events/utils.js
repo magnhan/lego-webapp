@@ -1,7 +1,7 @@
 // @flow
-import { pick } from 'lodash';
+import { pick, sumBy } from 'lodash';
 import moment from 'moment-timezone';
-import type { TransformEvent, EventType } from 'app/models';
+import type { TransformEvent, EventType, AddPenalty } from 'app/models';
 
 export const eventTypes = {
   company_presentation: 'Bedriftspresentasjon',
@@ -175,3 +175,19 @@ export const hasPaid = (chargeStatus: string) =>
   paymentSuccessMappings[chargeStatus];
 
 export const addStripeFee = (price: number) => Math.ceil(price * 1.012 + 1.8);
+
+export const sumPenalties = (penalties: Array<AddPenalty>) =>
+  sumBy(penalties, 'weight');
+
+export const penaltyHours = (penalties: Array<AddPenalty>) => {
+  switch (sumPenalties(penalties)) {
+    case 0:
+      return 0;
+    case 1:
+      return 3;
+    case 2:
+      return 12;
+    default:
+      return 0;
+  }
+};

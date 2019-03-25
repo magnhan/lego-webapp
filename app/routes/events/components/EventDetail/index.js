@@ -15,8 +15,7 @@ import moment from 'moment-timezone';
 import { FormatTime, FromToTime } from 'app/components/Time';
 import InfoList from 'app/components/InfoList';
 import { Flex } from 'app/components/Layout';
-import Tooltip from 'app/components/Tooltip';
-import { EVENT_TYPE_TO_STRING, colorForEvent } from '../../utils';
+import { EVENT_TYPE_TO_STRING, colorForEvent, penaltyHours } from '../../utils';
 import Admin from '../Admin';
 import RegistrationMeta from '../RegistrationMeta';
 import DisplayContent from 'app/components/DisplayContent';
@@ -29,12 +28,14 @@ import {
 } from 'app/components/Content';
 import { Link } from 'react-router';
 import UserGrid from 'app/components/UserGrid';
+import Tooltip from 'app/components/Tooltip';
 import type {
   ID,
   EventPool,
   EventRegistration,
   Event,
-  ActionGrant
+  ActionGrant,
+  AddPenalty
 } from 'app/models';
 import type { CommentEntity } from 'app/reducers/comments';
 import type { UserEntity } from 'app/reducers/users';
@@ -75,6 +76,7 @@ type Props = {
   currentRegistrationIndex: number,
   hasSimpleWaitingList: boolean,
   waitingRegistrations: Array<EventRegistration>,
+  penalties: Array<AddPenalty>,
   register: ({
     eventId: ID,
     captchaResponse: string,
@@ -150,6 +152,7 @@ export default class EventDetail extends Component<Props> {
       currentRegistrationIndex,
       hasSimpleWaitingList,
       deleteEvent,
+      penalties,
       follow,
       unfollow,
       deleteComment
@@ -166,6 +169,11 @@ export default class EventDetail extends Component<Props> {
     const onRegisterClick = event.isUserFollowing
       ? () => unfollow(event.isUserFollowing.id, event.id)
       : () => follow(currentUser.id, event.id);
+
+    const eventRegistrationTime = moment(event.activationTime).subtract(
+      penaltyHours(penalties),
+      'hours'
+    );
 
     const infoItems: Array<?{ key: string, value: Node }> = [
       event.company && {
@@ -209,7 +217,7 @@ export default class EventDetail extends Component<Props> {
       event.activationTime
         ? {
             key: 'Påmelding åpner',
-            value: <FormatTime time={event.activationTime} />
+            value: <FormatTime time={eventRegistrationTime} />
           }
         : null,
       event.unregistrationDeadline
