@@ -1,9 +1,10 @@
 // @flow
 import React from 'react';
-import { reduxForm, type FormProps, Field } from 'redux-form';
+import { reduxForm, type FormProps } from 'redux-form';
 import { Content } from 'app/components/Content';
-import { Form, Button, TextInput } from 'app/components/Form';
+import { Form, Button } from 'app/components/Form';
 import { createValidator, required, validPassword } from 'app/utils/validation';
+import PasswordField from './PasswordField';
 
 type Props = {
   token: string,
@@ -29,12 +30,7 @@ const UserResetPassword = ({
             resetPassword({ token, ...props }).then(() => router.push('/'))
           )}
         >
-          <Field
-            label="Nytt passord"
-            name="password"
-            type="password"
-            component={TextInput.Field}
-          />
+          <PasswordField label="Nytt passord" />
           <Button submit disabled={disabledButton}>
             Tilbakestill passord
           </Button>
