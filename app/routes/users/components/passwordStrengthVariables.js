@@ -1,5 +1,3 @@
-// @flow
-
 export const passwordLabel = {
   0: 'Veldig svakt',
   1: 'Svakt',

@@ -13,7 +13,12 @@ import {
 } from 'app/components/Form';
 import { Field } from 'redux-form';
 import { Link } from 'react-router';
-import { createValidator, required, validPassword } from 'app/utils/validation';
+import {
+  createValidator,
+  required,
+  validPassword,
+  sameAs
+} from 'app/utils/validation';
 import PasswordField from './PasswordField';
 
 type Props = {
@@ -80,6 +85,12 @@ const UserConfirmation = ({
           />
           <PasswordField user={user} />
           <Field
+            label="Passord (gjenta)"
+            name="retypePassword"
+            type="password"
+            component={TextInput.Field}
+          />
+          <Field
             name="firstName"
             placeholder="Fornavn"
             label="Fornavn"
@@ -126,6 +137,7 @@ const UserConfirmation = ({
 const validate = createValidator({
   username: [required()],
   password: [required(), validPassword()],
+  retypePassword: [required(), sameAs('password', 'Passordene er ikke like')],
   gender: [required()]
 });
 
