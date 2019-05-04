@@ -9584,6 +9584,13 @@ react-fast-compare@^2.0.2:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-2.0.4.tgz#e84b4d455b0fec113e0402c329352715196f81f9"
   integrity sha512-suNP+J1VU1MWFKcyt7RtjiSWUjvidmQSlqu+eHslq+342xCbGTYmC0mEhPCOHxlW0CywylOC1u2DFAT+bv4dBw==
 
+react-frontload@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/react-frontload/-/react-frontload-1.0.7.tgz#eb08690c6233cfb361dbae401a2b782f5e7accfc"
+  integrity sha512-bWpDWARECv1MjjiU7Hli3dd2yx3OUZzA/55nYOYk4utj9JLIOiq2p9G51USpTDHeKBR5QvyWmDr5eTrRMjIp3Q==
+  dependencies:
+    prop-types "^15.6.2"
+
 react-google-recaptcha@^1.0.5:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-google-recaptcha/-/react-google-recaptcha-1.1.0.tgz#f33bef3e22e8c016820e80da48d573f516bb99e8"
