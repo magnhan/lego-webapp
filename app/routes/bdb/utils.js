@@ -60,7 +60,7 @@ export const sortStatusesByProminence = (
 export const selectMostProminentStatus = (
   statuses: Array<CompanySemesterContactedStatus> = []
 ) => {
-  return statuses.sort(sortStatusesByProminence)[0];
+  return statuses.slice().sort(sortStatusesByProminence)[0];
 };
 
 export const semesterNameOf = (index: number) => {
