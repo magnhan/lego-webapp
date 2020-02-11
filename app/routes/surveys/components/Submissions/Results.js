@@ -87,7 +87,6 @@ const Results = ({
           const pieColors = CHART_COLORS.filter(
             (color, i) => !colorsToRemove.includes(i)
           );
-          const labelRadius = pieData.length === 1 ? -10 : 60;
 
           return (
             <li key={question.id}>

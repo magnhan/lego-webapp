@@ -9,6 +9,7 @@ import styles from './GroupPage.css';
 import { Route, Switch } from 'react-router-dom';
 import SelectGroup from '../components/SelectGroup';
 import GroupDetailRoute from '../GroupDetailRoute';
+import MatchType from 'app/models';
 
 const NavigationLinks = ({ groupId }: { groupId: string }) => {
   const baseUrl = `/admin/groups/${groupId}`;
@@ -33,7 +34,8 @@ type GroupPageProps = {
   children: Node,
   groups: Array<Object>,
   location: { pathname: string },
-  params: { groupId: string }
+  params: { groupId: string },
+  match: MatchType
 };
 
 const GroupPage = ({ groups, children, location, match }: GroupPageProps) => {
