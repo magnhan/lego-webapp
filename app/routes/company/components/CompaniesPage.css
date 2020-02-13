@@ -5,7 +5,7 @@
 }
 
 .picture {
-  background-color: ghostwhite;
+  background-color: var(--color-white);
 }
 
 .heading {
