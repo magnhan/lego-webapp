@@ -97,6 +97,10 @@
   opacity: 0.8;
 }
 
+html[data-theme='dark'] .voteButton {
+  color: var(--color-dark-gray-3);
+}
+
 .moreOptionsLink {
   display: grid;
   grid: auto-flow / 3fr 1fr 3fr;
