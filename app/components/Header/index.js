@@ -19,6 +19,11 @@ import {
 } from 'app/components/LoginForm';
 import { Flex } from 'app/components/Layout';
 import cx from 'classnames';
+import {
+  applySelectedTheme,
+  getLogoImage,
+  getTheme
+} from 'app/utils/themeUtils';
 import { Image } from 'app/components/Image';
 
 import type { UserEntity } from 'app/reducers/users';
@@ -112,6 +117,11 @@ class Header extends Component<Props, State> {
     const { loggedIn } = this.props;
     const isLogin = this.state.mode === 'login';
     let title, form;
+
+    if (loggedIn && currentUser && currentUser.selectedTheme != getTheme()) {
+      applySelectedTheme(currentUser.selectedTheme || 'light');
+    }
+
     switch (this.state.mode) {
       case 'login':
         title = 'Logg inn';

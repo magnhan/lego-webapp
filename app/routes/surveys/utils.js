@@ -82,15 +82,15 @@ export const defaultActiveFrom = (hours: number, minutes: number) =>
     .toISOString();
 
 export const CHART_COLORS = [
-  '#c0392b',
-  '#2b95d6',
-  '#d9822b',
-  '#3dcc91',
-  '#c73aea',
-  '#f4ee42',
-  '#98f442',
-  '#ff87eb',
-  '#000000'
+  'var(--lego-red)',
+  'var(--color-blue-4)',
+  'var(--color-orange-3)',
+  'var(--color-green-5)',
+  'var(--lego-chart-purple)',
+  'var(--lego-chart-yellow)',
+  'var(--lego-chart-green)',
+  'var(--lego-chart-pink)',
+  'var(--color-black)'
 ];
 
 export const getCsvUrl = (surveyId: string) =>
