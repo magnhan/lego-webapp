@@ -40,7 +40,10 @@ type Props = {
   loggedIn: boolean
 };
 
-export const UserContext = React.createContext();
+export const UserContext = React.createContext({
+  currentUser: {},
+  loggedIn: false
+});
 
 class AppChildren extends PureComponent<Props> {
   render() {
